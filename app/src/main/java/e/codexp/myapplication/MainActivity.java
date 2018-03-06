@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button cadastromentor = (Button) findViewById(R.id.button);
-        Button cadastromentorado = (Button) findViewById(R.id.button2);
-        Button login = (Button) findViewById(R.id.button3);
+        Button cadastromentor = (Button) findViewById(R.id.btcadmentor);
+        Button cadastromentorado = (Button) findViewById(R.id.btcadmentorado);
+        Button login = (Button) findViewById(R.id.btconta);
                 cadastromentor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
