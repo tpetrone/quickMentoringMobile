@@ -2,16 +2,19 @@ package e.codexp.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class Profile extends AppCompatActivity {
     private ImageButton imgperfil;
@@ -34,9 +37,29 @@ public class Profile extends AppCompatActivity {
                 protected void onActivityResult(int requestCode, int resultCode, Intent data){
                     Profile.super.onActivityResult(requestCode, resultCode, data);
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = data.getData();
-                    Bitmap bitmap = null;
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                         class PhotoFromUri extends AsyncTask<Void, Bitmap, Bitmap> {
+                        private Uri fotoUrl;
+
+                        public PhotoFromUri(Uri fotoUrl) {
+                            this.fotoUrl = fotoUrl;
+                        }
+
+                        @Override
+                        protected Bitmap doInBackground(Void... params) {
+                            Bitmap bitmap = null;
+
+                            try {
+                                InputStream is = new URL(fotoUrl.toString()).openStream();
+                                bitmap = BitmapFactory.decodeStream(is);
+                                is.close();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                                Log.e("PhotoFromUri", ex.getMessage());
+                            }
+
+                            return bitmap;
+                        }
+                    }
                 }
             }
         });
