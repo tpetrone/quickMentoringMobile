@@ -9,12 +9,12 @@
     <string name="nome">Nome</string>
     <string name="perfil">Perfil</string>
     <string-array name="genero">
-        <item>selecione o gênero</item>
+        <item>Selecione o gênero</item>
         <item>masculino</item>
         <item>feminino</item>
     </string-array>
     <string-array name="unidades">
-        <item>selecione a unidade</item>
+        <item>Selecione a unidade</item>
         <item>Caxias do Sul</item>
         <item>Guaratinguetá</item>
         <item>Jundiaí</item>

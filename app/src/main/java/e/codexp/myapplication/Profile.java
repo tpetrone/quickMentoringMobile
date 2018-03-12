@@ -32,6 +32,7 @@ public class Profile extends AppCompatActivity {
 
         dropdown2 =(Spinner) findViewById(R.id.spnnascimento);
         ArrayList<String> years = new ArrayList<String>();
+        years.add("Selecione o ano de nascimento");
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 1930; i <= thisYear; i++) {
             years.add(Integer.toString(i));
