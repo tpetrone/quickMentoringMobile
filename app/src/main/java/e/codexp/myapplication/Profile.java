@@ -1,24 +1,21 @@
 package e.codexp.myapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
-import java.io.InputStream;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Profile extends AppCompatActivity {
-    private ImageButton imgperfil;
-    private static int RESULT_LOAD_IMAGE = 1;
+    private Spinner dropdown, dropdown2, dropdown3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,44 +23,52 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        imgperfil = (ImageButton) findViewById(R.id.imgperfil);
-        imgperfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent image = new Intent(
-                        Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                startActivityForResult(image, RESULT_LOAD_IMAGE);}
-                protected void onActivityResult(int requestCode, int resultCode, Intent data){
-                    Profile.super.onActivityResult(requestCode, resultCode, data);
-                if (resultCode == RESULT_OK) {
-                         class PhotoFromUri extends AsyncTask<Void, Bitmap, Bitmap> {
-                        private Uri fotoUrl;
+        dropdown = (Spinner) findViewById(R.id.spngenero);
+        ArrayAdapter<String> Adpgenero = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.genero));
+        Adpgenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(Adpgenero);
 
-                        public PhotoFromUri(Uri fotoUrl) {
-                            this.fotoUrl = fotoUrl;
-                        }
+        dropdown2 =(Spinner) findViewById(R.id.spnnascimento);
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 1930; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> Adpano = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, years);
+        Adpano.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown2.setAdapter(Adpano);
 
-                        @Override
-                        protected Bitmap doInBackground(Void... params) {
-                            Bitmap bitmap = null;
+        dropdown3 =(Spinner) findViewById(R.id.spnsede);
+        ArrayAdapter<String> Adpsede = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.unidades));
+        Adpsede.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown3.setAdapter(Adpsede);
+    }
 
-                            try {
-                                InputStream is = new URL(fotoUrl.toString()).openStream();
-                                bitmap = BitmapFactory.decodeStream(is);
-                                is.close();
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
-                                Log.e("PhotoFromUri", ex.getMessage());
-                            }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-                            return bitmap;
-                        }
-                    }
-                }
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.perfil:
+                Intent perfil = new Intent(this, Profile.class);
+                startActivity(perfil);
+                break;
+        }
+        return true;
+    }
 
-    }}
+    public void confimarClicado(View view) {
+        String genero = (String)dropdown.getSelectedItem();
+        String ano =(String)dropdown2.getSelectedItem();
+        String unidade =(String)dropdown3.getSelectedItem();
+    }
+}
 
 
