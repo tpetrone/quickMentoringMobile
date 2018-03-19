@@ -10,34 +10,46 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Profile extends AppCompatActivity {
-    private Spinner dropdown, dropdown2, dropdown3;
+import e.codexp.myapplication.model.Perfil;
+import e.codexp.myapplication.model.PerfilDao;
+
+public class Profile extends AppCompatActivity implements View.OnClickListener {
+
+    // Flags
     private static int RESULT_LOAD_IMAGE = 1;
-    private ImageButton imgperfil;
+
+    // Elementos
+    private ImageView ivFoto;
+    private Spinner dropdown, dropdown2, dropdown3;
+    private EditText edNome;
+    private EditText edBio;
+
+    // Models
+    private PerfilDao dao = PerfilDao.instance;
+    private Perfil perfil;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        imgperfil = (ImageButton) findViewById(R.id.imgperfil);
-        imgperfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-            }
-        });
+        perfil = dao.localizar();
 
+        ivFoto = findViewById(R.id.imgperfil);
+        ivFoto.setOnClickListener(this);
         dropdown = (Spinner) findViewById(R.id.spngenero);
         ArrayAdapter<String> Adpgenero = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.genero));
@@ -59,13 +71,22 @@ public class Profile extends AppCompatActivity {
         ArrayAdapter<String> Adpsede = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.unidades));
         Adpsede.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown3.setAdapter(Adpsede);
+
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
 
     public void onActivityResult(int requestCode,int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data!= null){
             Uri selectedImage = data.getData();
-            imgperfil.setImageURI(selectedImage);
+            ivFoto.setImageURI(selectedImage);
         };
     };
 
