@@ -1,8 +1,8 @@
 package e.codexp.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         Button cadastromentor = (Button) findViewById(R.id.btcadmentor);
         Button cadastromentorado = (Button) findViewById(R.id.btcadmentorado);
         Button login = (Button) findViewById(R.id.btconta);
-                cadastromentor.setOnClickListener(new View.OnClickListener() {
+        cadastromentor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mentor = "mentor";

@@ -88,9 +88,8 @@ public class Profile extends AppCompatActivity {
     }
 
     public void confimarClicado(View view) {
-        String genero = (String)dropdown.getSelectedItem();
-        String ano =(String)dropdown2.getSelectedItem();
-        String unidade =(String)dropdown3.getSelectedItem();
+        Intent it6 = new Intent(Profile.this, CriarMentoria.class);
+        startActivity(it6);
     }
 }
 

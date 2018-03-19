@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">QuickMentoring</string>
     <string name="title_activity_sign_up">SignUp</string>
     <string name="email">e-mail</string>
     <string name="senha">senha</string>
@@ -8,6 +8,10 @@
     <string name="esqueci">Esqueci a minha senha</string>
     <string name="nome">Nome</string>
     <string name="perfil">Perfil</string>
+    <string name="mentoria">Nome da Mentoria</string>
+    <string name="endereço">Endereço da Mentoria</string>
+    <string name="data">Data e Hora da Mentoria</string>
+    <string name="disponibilidade">Escolha a disponibilidade da aula</string>
     <string-array name="genero">
         <item>Selecione o gênero</item>
         <item>masculino</item>
@@ -38,4 +42,5 @@
         completions."
     </string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_criar_mentoria">CriarMentoria</string>
 </resources>
