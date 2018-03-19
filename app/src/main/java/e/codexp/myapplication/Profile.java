@@ -1,37 +1,52 @@
 package e.codexp.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import e.codexp.myapplication.lib.Utilitarios;
 import e.codexp.myapplication.model.Perfil;
 import e.codexp.myapplication.model.PerfilDao;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     // Flags
-    private static int RESULT_LOAD_IMAGE = 1;
+    private static int NEW_ACTION = 1;
+    private static final int REQUEST_IMAGE_GALERY = 0;
+    private static final int REQUEST_GALERY_PERMISSION = 1;
 
     // Elementos
-    private ImageView ivFoto;
     private Spinner dropdown, dropdown2, dropdown3;
     private EditText edNome;
     private EditText edBio;
+
+    private ImageView ivFoto;
+    private Button btnConfirma;
+
 
     // Models
     private PerfilDao dao = PerfilDao.instance;
@@ -72,23 +87,61 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Adpsede.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown3.setAdapter(Adpsede);
 
+        btnConfirma = findViewById(R.id.btnok);
+        btnConfirma.setOnClickListener(this);
 
+        edNome = findViewById(R.id.nome);
+        edNome.setText(perfil.getNome());
     }
 
 
     @Override
     public void onClick(View view) {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+        if(view.equals(ivFoto)) {
+            // Abrir a Galeria de Fotos
+            abrirGalery();
+        } else if(view.equals(btnConfirma)) {
+            perfil.setNome(String.valueOf(edNome.getText()));
+            dao.salvar(perfil);
+
+            Intent tela = new Intent(getBaseContext(), CriarMentoria.class);
+            startActivityForResult(tela, NEW_ACTION);
+        }
     }
 
-    public void onActivityResult(int requestCode,int resultCode, Intent data) {
-        super.onActivityResult(requestCode,resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data!= null){
-            Uri selectedImage = data.getData();
-            ivFoto.setImageURI(selectedImage);
-        };
-    };
+    private void abrirGalery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            if ((ContextCompat.checkSelfPermission(getBaseContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_GALERY_PERMISSION);
+            } else {
+                startActivityForResult(Intent.createChooser(intent, "Selecione a Foto"),
+                        REQUEST_IMAGE_GALERY);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_GALERY) { // Recebe a Foto da Galeria de Fotos
+            if(data != null) {
+                try {
+                    Uri imageURI = data.getData();
+
+                    Bitmap bitmap = Utilitarios.setPic(ivFoto.getWidth(), ivFoto.getHeight(), imageURI, this);
+                    ivFoto.setImageBitmap(bitmap);
+                    ivFoto.invalidate();
+                } catch (IOException ex) {
+                    Toast.makeText(this, "Falha ao abrir a Foto", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,11 +160,4 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
         return true;
     }
-
-    public void confimarClicado(View view) {
-        Intent it6 = new Intent(Profile.this, CriarMentoria.class);
-        startActivity(it6);
-    }
 }
-
-

@@ -22,7 +22,7 @@ public class PerfilDao {
     }
 
     public void salvar(Perfil obj) {
-        perfil= obj;
+        perfil = obj;
     }
 
     public Perfil localizar() {
