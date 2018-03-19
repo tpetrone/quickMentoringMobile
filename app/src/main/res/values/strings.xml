@@ -6,6 +6,25 @@
     <string name="senha2">digite a senha novamente</string>
     <string name="title_activity_login">Sign in</string>
     <string name="esqueci">Esqueci a minha senha</string>
+    <string name="nome">Nome</string>
+    <string name="perfil">Perfil</string>
+    <string-array name="genero">
+        <item>Selecione o gênero</item>
+        <item>masculino</item>
+        <item>feminino</item>
+    </string-array>
+    <string-array name="unidades">
+        <item>Selecione a unidade</item>
+        <item>Caxias do Sul</item>
+        <item>Guaratinguetá</item>
+        <item>Jundiaí</item>
+        <item>Mogi Mirim</item>
+        <item>Porto Feliz</item>
+        <item>São José dos Campos</item>
+        <item>São Paulo</item>
+        <item>Valinhos</item>
+    </string-array>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -18,4 +37,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_profile">Profile</string>
 </resources>

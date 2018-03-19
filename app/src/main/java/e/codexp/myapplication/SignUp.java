@@ -20,7 +20,7 @@ public class SignUp extends AppCompatActivity {
         Intent intent = getIntent();
         String mentor = intent.getExtras().getString("mentor");
         String mentorado = intent.getExtras().getString("mentorado");
-        Button cadastrar = (Button) findViewById(R.id.button4);
+        Button cadastrar = (Button) findViewById(R.id.btcadastrar);
         if(mentor != null)
             setTitle("Cadastrar-se como mentor");
          if(mentorado != null)
@@ -29,7 +29,7 @@ public class SignUp extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it4 = new Intent(SignUp.this, Login.class);
+                Intent it4 = new Intent(SignUp.this, Profile.class);
                 startActivity(it4);
     }
 
