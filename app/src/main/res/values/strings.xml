@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">QuickMentoring</string>
     <string name="title_activity_sign_up">SignUp</string>
     <string name="email">e-mail</string>
     <string name="senha">senha</string>

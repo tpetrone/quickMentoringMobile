@@ -19,7 +19,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View view) {
-                                         Intent it5 = new Intent(Login.this, CriarMentoria.class);
+                                         Intent it5 = new Intent(Login.this, Profile.class);
                                          startActivity(it5);
                                      }
                                  }
