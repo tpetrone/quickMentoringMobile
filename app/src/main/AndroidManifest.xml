@@ -38,6 +38,10 @@
         <activity
             android:name=".view.CriarMentoria"
             android:label="@string/title_activity_criar_mentoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".model.ProcurarMentoria"
+            android:label="@string/title_activity_procurar_mentoria"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
