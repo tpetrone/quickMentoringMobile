@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_criar_mentoria"
     android:fillViewport="true"
-    tools:context="e.codexp.myapplication.CriarMentoria"
+    tools:context="e.codexp.myapplication.view.CriarMentoria"
     android:layout_margin="8dp">
 
     <LinearLayout

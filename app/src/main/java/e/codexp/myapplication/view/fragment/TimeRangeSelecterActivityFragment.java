@@ -1,4 +1,4 @@
-package e.codexp.myapplication;
+package e.codexp.myapplication.view.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import e.codexp.myapplication.R;
 import me.tittojose.www.timerangepicker_library.TimeRangePickerDialog;
 
 

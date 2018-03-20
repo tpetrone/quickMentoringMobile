@@ -14,8 +14,9 @@
     <string name="disponibilidade">Escolha a disponibilidade da aula</string>
     <string-array name="genero">
         <item>Selecione o gênero</item>
-        <item>masculino</item>
-        <item>feminino</item>
+        <item>Pangênero</item>
+        <item>Feminino</item>
+        <item>Masculino</item>
     </string-array>
     <string-array name="unidades">
         <item>Selecione a unidade</item>

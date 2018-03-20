@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mentoria"
-    tools:context="e.codexp.myapplication.MainActivity">
+    tools:context="e.codexp.myapplication.view.MainActivity">
 
     <Button
         android:id="@+id/btcadmentor"

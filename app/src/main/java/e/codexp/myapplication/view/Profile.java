@@ -1,4 +1,4 @@
-package e.codexp.myapplication;
+package e.codexp.myapplication.view;
 
 import android.Manifest;
 import android.content.Intent;
@@ -6,28 +6,27 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
+import e.codexp.myapplication.R;
 import e.codexp.myapplication.lib.Utilitarios;
 import e.codexp.myapplication.model.Perfil;
 import e.codexp.myapplication.model.PerfilDao;
@@ -65,27 +64,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         ivFoto = findViewById(R.id.imgperfil);
         ivFoto.setOnClickListener(this);
-        dropdown = (Spinner) findViewById(R.id.spngenero);
-        ArrayAdapter<String> Adpgenero = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.genero));
-        Adpgenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown.setAdapter(Adpgenero);
 
-        dropdown2 =(Spinner) findViewById(R.id.spnnascimento);
-        ArrayList<String> years = new ArrayList<String>();
-        years.add("Selecione o ano de nascimento");
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 1930; i <= thisYear; i++) {
-            years.add(Integer.toString(i));
-        }
-        ArrayAdapter<String> Adpano = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, years);
-        Adpano.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown2.setAdapter(Adpano);
+        ArrayAdapter<String> AdpAno = setSpinnerAdapter(generateYears());;
+        ArrayAdapter<String> AdpSede = setSpinnerAdapter(getSede());
+        ArrayAdapter<String> AdpGenero = setSpinnerAdapter(getGeneros());
+
+        dropdown = findViewById(R.id.spngenero);
+        dropdown.setAdapter(AdpGenero);
+
+        dropdown2 = findViewById(R.id.spnnascimento);
+        dropdown2.setAdapter(AdpAno);
 
         dropdown3 =(Spinner) findViewById(R.id.spnsede);
-        ArrayAdapter<String> Adpsede = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.unidades));
-        Adpsede.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown3.setAdapter(Adpsede);
+        dropdown3.setAdapter(AdpSede);
 
         btnConfirma = findViewById(R.id.btnok);
         btnConfirma.setOnClickListener(this);
@@ -94,6 +85,29 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         edNome.setText(perfil.getNome());
     }
 
+    private List<String> getSede() {
+        return Arrays.asList(getResources().getStringArray(R.array.unidades));
+    }
+
+    private List<String> getGeneros() {
+        return Arrays.asList(getResources().getStringArray(R.array.genero));
+    }
+
+    private List<String> generateYears() {
+        List<String> years = new ArrayList<String>();
+        years.add("Selecione o ano de nascimento");
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 1930; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        return years;
+    }
+
+    private ArrayAdapter<String> setSpinnerAdapter(List<String> data) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
+    }
 
     @Override
     public void onClick(View view) {
@@ -101,7 +115,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             // Abrir a Galeria de Fotos
             abrirGalery();
         } else if(view.equals(btnConfirma)) {
+            //TODO: terminar de salvar atributos
             perfil.setNome(String.valueOf(edNome.getText()));
+            //TODO fim
+
             dao.salvar(perfil);
 
             Intent tela = new Intent(getBaseContext(), CriarMentoria.class);
