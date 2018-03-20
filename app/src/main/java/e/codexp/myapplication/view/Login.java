@@ -9,22 +9,25 @@ import android.widget.Button;
 
 import e.codexp.myapplication.R;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button login = (Button) findViewById(R.id.btlogin);
-        login.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View view) {
-                                         Intent it5 = new Intent(Login.this, Profile.class);
-                                         startActivity(it5);
-                                     }
-                                 }
-        );
+
+        btLogin = findViewById(R.id.btlogin);
+        btLogin.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent it6 = new Intent(Login.this, CriarMentoria.class);
+        startActivity(it6);
     }
 }
