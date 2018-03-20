@@ -8,39 +8,39 @@ import android.widget.Button;
 
 import e.codexp.myapplication.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btLogin;
+    private Button btCadastroMentor;
+    private Button btCadastroMentorado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button cadastromentor = (Button) findViewById(R.id.btcadmentor);
-        Button cadastromentorado = (Button) findViewById(R.id.btcadmentorado);
-        Button login = (Button) findViewById(R.id.btconta);
-        cadastromentor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String mentor = "mentor";
-                Intent it = new Intent(MainActivity.this, SignUp.class);
-                it.putExtra("mentor", mentor);
-                startActivity(it);
-            }
-        });
-        cadastromentorado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String mentorado = "mentorado";
-                Intent it = new Intent(MainActivity.this, SignUp.class);
-                it.putExtra("mentorado", mentorado);
-                startActivity(it);
-            }
-        });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it3 = new Intent(MainActivity.this, Login.class);
-                startActivity(it3);
-            }
-        });
+
+        btCadastroMentor = findViewById(R.id.btcadmentor);
+        btCadastroMentorado = findViewById(R.id.btcadmentorado);
+        btLogin = findViewById(R.id.btconta);
+
+        btCadastroMentorado.setOnClickListener(this);
+        btCadastroMentor.setOnClickListener(this);
+        btLogin.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btLogin) {
+            Intent it3 = new Intent(MainActivity.this, Login.class);
+            startActivity(it3);
+        } else if(v == btCadastroMentor) {
+            Intent it = new Intent(MainActivity.this, SignUp.class);
+            it.putExtra("role", "mentor");
+            startActivity(it);
+        } else if(v == btCadastroMentorado) {
+            Intent it = new Intent(MainActivity.this, SignUp.class);
+            it.putExtra("role", "mentorado");
+            startActivity(it);
+        }
     }
 }

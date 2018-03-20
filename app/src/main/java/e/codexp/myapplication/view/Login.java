@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent it6 = new Intent(Login.this, CriarMentoria.class);
-        startActivity(it6);
+        Intent it = new Intent(Login.this, CriarMentoria.class);
+        startActivity(it);
     }
 }
