@@ -1,4 +1,4 @@
-package e.codexp.myapplication.model;
+package e.codexp.myapplication.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
