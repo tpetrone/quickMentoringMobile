@@ -18,7 +18,7 @@ public class CriarMentoriaDAO {
                 "Aulas Online",
                 "Aulas Presenciais",
                 "Endereço",
-                 ,
+                ,
                 20,
                 "sobre",
                 "Individual",
