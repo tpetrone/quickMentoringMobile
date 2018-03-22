@@ -13,7 +13,7 @@ import e.codexp.myapplication.model.MentoriaDAO;
 public class CriarMentoria extends AppCompatActivity {
     private EditText nomeDamentoria;
     private e.codexp.myapplication.model.MentoriaDAO dao = MentoriaDAO.instance;
-    private e.codexp.myapplication.model.Mentoria CriarMentoria;
+    private e.codexp.myapplication.model.Mentoria Mentoria;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +21,8 @@ public class CriarMentoria extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CriarMentoria = dao.localizar();
+        Mentoria = dao.localizar();
         nomeDamentoria =findViewById(R.id.NomeDaMentoria);
-        nomeDamentoria.setText(CriarMentoria.getNomementoria());
+        nomeDamentoria.setText(Mentoria.getNomementoria());
     }
 }

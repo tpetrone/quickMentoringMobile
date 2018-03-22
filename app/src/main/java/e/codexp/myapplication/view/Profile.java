@@ -29,7 +29,7 @@ import java.util.List;
 import e.codexp.myapplication.R;
 import e.codexp.myapplication.lib.Utilitarios;
 import e.codexp.myapplication.model.Perfil;
-import e.codexp.myapplication.model.PerfilDao;
+import e.codexp.myapplication.model.PerfilDAO;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,7 +48,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
     // Models
-    private PerfilDao dao = PerfilDao.instance;
+    private PerfilDAO dao = PerfilDAO.instance;
     private Perfil perfil;
 
 

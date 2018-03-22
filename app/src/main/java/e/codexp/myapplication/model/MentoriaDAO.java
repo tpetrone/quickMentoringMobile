@@ -17,14 +17,10 @@ public class MentoriaDAO {
                 id++,
                 "Nome da Mentoria",
                 "inglês",
-                "Aulas Online",
-                "Aulas Presenciais",
-                "Endereço",
+                "Endereco",
                 null,
                 20,
-                "sobre",
-                "Individual",
-                "Em grupo"
+                "sobre"
     );
     }
     public void salvar(Mentoria obj){
