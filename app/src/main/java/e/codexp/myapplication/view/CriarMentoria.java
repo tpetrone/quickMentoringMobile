@@ -23,7 +23,7 @@ public class CriarMentoria extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         CriarMentoria = dao.localizar();
-        nomeDamentoria =findViewById(R.id.nomementoria)
-        nomeDamentoria.setText(CriarMentoria.getNomementoria();
+        nomeDamentoria =findViewById(R.id.NomeDaMentoria);
+        nomeDamentoria.setText(CriarMentoria.getNomementoria());
     }
 }

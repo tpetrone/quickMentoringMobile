@@ -54,6 +54,9 @@ public class CriarMentoria {
     public Date getdata(){return data;}
     public void setData(Date data){this.data = data;}
 
+    public int getHora(){return hora;}
+    public void setHora(int hora){this.hora = hora;}
+
     public String getSobre(){return sobre;}
     public void setSobre(String sobre){this.sobre = sobre;}
 

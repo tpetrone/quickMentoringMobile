@@ -1,5 +1,7 @@
 package e.codexp.myapplication.model;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by CodeXP on 20/03/2018.
  */
@@ -18,7 +20,7 @@ public class CriarMentoriaDAO {
                 "Aulas Online",
                 "Aulas Presenciais",
                 "Endereço",
-                ,
+                null,
                 20,
                 "sobre",
                 "Individual",
