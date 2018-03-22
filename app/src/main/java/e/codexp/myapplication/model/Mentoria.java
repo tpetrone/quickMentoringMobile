@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by CodeXP on 20/03/2018.
  */
 
-public class CriarMentoria {
+public class Mentoria {
     private long id;
     private String nomementoria;
     private String categoria;
@@ -17,10 +17,10 @@ public class CriarMentoria {
     private String sobre;
     private String checkbox3, checkbox4;
 
-    public CriarMentoria(){
+    public Mentoria(){
     }
-    public CriarMentoria(Long id){this.id = id;}
-    public CriarMentoria(Long id, String nomementoria, String categoria, String checkbox, String checkbox2, String endereço, Date data, int hora, String sobre, String checkbox3, String checkbox4){
+    public Mentoria(Long id){this.id = id;}
+    public Mentoria(Long id, String nomementoria, String categoria, String checkbox, String checkbox2, String endereço, Date data, int hora, String sobre, String checkbox3, String checkbox4){
         this.id = id;
         this.nomementoria = nomementoria;
         this.categoria = categoria;

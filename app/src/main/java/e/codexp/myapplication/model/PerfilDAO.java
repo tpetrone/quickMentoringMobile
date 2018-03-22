@@ -4,13 +4,13 @@ package e.codexp.myapplication.model;
  * Created by tpetrone on 19/03/18.
  */
 
-public class PerfilDao {
-    public static PerfilDao instance = new PerfilDao();
+public class PerfilDAO {
+    public static PerfilDAO instance = new PerfilDAO();
     private Perfil perfil;
 
     private long id = 0;
 
-    private PerfilDao() {
+    private PerfilDAO() {
         perfil = new Perfil(
             id++,
             "Nome da pessoa",

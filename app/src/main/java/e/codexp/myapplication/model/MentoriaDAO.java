@@ -6,14 +6,14 @@ import java.text.SimpleDateFormat;
  * Created by CodeXP on 20/03/2018.
  */
 
-public class CriarMentoriaDAO {
-    public static CriarMentoriaDAO instance = new CriarMentoriaDAO();
-    private CriarMentoria CriarMentoria;
+public class MentoriaDAO {
+    public static MentoriaDAO instance = new MentoriaDAO();
+    private Mentoria Mentoria;
 
     private long id = 0;
 
-    private CriarMentoriaDAO() {
-        CriarMentoria = new CriarMentoria(
+    private MentoriaDAO() {
+        Mentoria = new Mentoria(
                 id++,
                 "Nome da Mentoria",
                 "inglês",
@@ -27,11 +27,11 @@ public class CriarMentoriaDAO {
                 "Em grupo"
     );
     }
-    public void salvar(CriarMentoria obj){
-        CriarMentoria = obj;
+    public void salvar(Mentoria obj){
+        Mentoria = obj;
     }
-    public CriarMentoria localizar(){
-        return CriarMentoria;
+    public Mentoria localizar(){
+        return Mentoria;
     }
 }
 
