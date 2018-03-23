@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "codexp.br.senai.sp.quick_mentoring_mobile"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"

@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RestInterface {
 
@@ -25,6 +26,12 @@ public interface RestInterface {
 
     @GET("mentoria")
     Call<List<Mentoria>> listarMentoriasDosMentores();
+
+    @GET("aplicacao/mentor/{id}")
+    Call<List<Mentoria>> listarMentoriasDoMentor(@Path("id") int id);
+
+    @GET("aplicacao/mentor/{id}")
+    Call<ResponseBody> listarMentoriasDoMentorBody(@Path("id") int id);
 
     @GET("categoria")
     Call<List<Categoria>> listarCategoriasDosMentores();

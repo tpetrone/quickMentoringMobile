@@ -22,6 +22,7 @@ import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.HomeMentoradoActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         tilLoginSenha = findViewById(R.id.tilLoginSenha);
         btnRealizarLogin = findViewById(R.id.btnRealizarLogin);
 
-        tilLoginUsuario.getEditText().setText("mentor@mentor.com");
+        tilLoginUsuario.getEditText().setText("helena.strada@gmail.com");
         tilLoginSenha.getEditText().setText("123456");
 
         sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
@@ -90,7 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, HomeMentorActivity.class);
                                 startActivity(intent);
                             } else if (perfil.equals("Mentorado")) {
-                                Toast.makeText(getApplicationContext(), "Mentorado", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, HomeMentoradoActivity.class);
+                                startActivity(intent);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Seu perfil não coincide.", Toast.LENGTH_LONG).show();
                             }

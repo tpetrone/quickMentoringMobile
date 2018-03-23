@@ -24,6 +24,10 @@
             android:name=".views.mentor.HomeMentorActivity"
             android:label="@string/title_activity_home_mentor"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.mentorado.HomeMentoradoActivity"
+            android:label="@string/title_activity_home_mentorado"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.mentor.CadastrarMentoriaActivity"></activity>
     </application>
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">quick-mentoring-mobile</string>
     <string name="title_activity_home_mentor">HomeMentorActivity</string>
+    <string name="title_activity_home_mentorado">HomeMentoradoActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
