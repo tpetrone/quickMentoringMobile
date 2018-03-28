@@ -161,17 +161,7 @@ public class CadastrarMentoriaActivity extends AppCompatActivity {
                     , sedeSelecionada.getSedeId()
             );
 
-            final OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
-                    Request.Builder b = chain.request().newBuilder();
-                    b.addHeader("Accept", "application/json");
-                    b.addHeader("Authorization", token);
-                    return chain.proceed(b.build());
-                }
-            }).build();
-
-            Call<Mentoria> call = new RetrofitConfig(okHttpClient).getRestInterface().cadastrarMentoria(mentoriaASalvar);
+            Call<Mentoria> call = new RetrofitConfig(token).getRestInterface().cadastrarMentoria(mentoriaASalvar);
             call.enqueue(new Callback<Mentoria>() {
                 @Override
                 public void onResponse(Call<Mentoria> call, Response<Mentoria> response) {

@@ -20,12 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
@@ -85,70 +87,30 @@ public class HomeMentorActivity extends AppCompatActivity
     }
 
     private void carregarInformacoesDasMentorias() {
+        Call<List<Mentoria>> call = new RetrofitConfig(token).getRestInterface().listarMentoriasDoMentor(usuarioId);
+        call.enqueue(new Callback<List<Mentoria>>() {
+            ObjectMapper mapper = new ObjectMapper();
+            Mentoria mentoria = new Mentoria();
 
-        final OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request.Builder b = chain.request().newBuilder();
-                b.addHeader("Accept", "application/json");
-                b.addHeader("Authorization", token);
-                return chain.proceed(b.build());
-            }
-        }).build();
-
-        Call<ResponseBody> call = new RetrofitConfig(okHttpClient).getRestInterface().listarMentoriasDoMentorBody(usuarioId);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<List<Mentoria>> call, Response<List<Mentoria>> response) {
                 if (response.isSuccessful()) {
-                    try {
-                        Log.d("retorno", response.body().string());
-                        String retorno = response.body().string();
-                        JSONArray retornoArray = new JSONArray(response.body().string());
-                        JSONObject retornoObjeto = new JSONObject();
-                        for (int i = 0; i < retornoArray.length(); i++) {
-                            retornoObjeto = retornoArray.getJSONObject(i);
-                            int id = retornoObjeto.getInt("aplicacaoId");
-                            Log.d("id", String.valueOf(id));
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    mentoriasApi = response.body();
+                    if (mentoriasApi != null) {
+                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, getApplicationContext()));
+                        RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                        rvListagemMentorias.setLayoutManager(layout);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Não há mentorias cadastradas.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<List<Mentoria>> call, Throwable t) {
 
             }
         });
-
-
-//        Call<List<Mentoria>> call = new RetrofitConfig(okHttpClient).getRestInterface().listarMentoriasDoMentor(usuarioId);
-//        call.enqueue(new Callback<List<Mentoria>>() {
-//            @Override
-//            public void onResponse(Call<List<Mentoria>> call, Response<List<Mentoria>> response) {
-//                if (response.isSuccessful()) {
-//                    mentoriasApi = response.body();
-//                    if (mentoriasApi != null) {
-//                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, getApplicationContext()));
-//                        RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-//                        rvListagemMentorias.setLayoutManager(layout);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Não há mentorias cadastradas.", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Mentoria>> call, Throwable t) {
-//
-//            }
-//        });
-
     }
 
     @Override

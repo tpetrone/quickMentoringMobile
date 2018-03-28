@@ -38,4 +38,9 @@ dependencies {
 
     // recyclerview
     compile 'com.android.support:recyclerview-v7:26.1.0'
+
+    // mapper
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
 }

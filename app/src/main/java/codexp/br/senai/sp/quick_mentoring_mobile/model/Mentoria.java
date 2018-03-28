@@ -15,9 +15,9 @@ public class Mentoria {
     private Sede sede;
 
     // para fazer o post
-    private int usuarioid;
-    private int categoriaid;
-    private int sedeid;
+    private int usuarioId;
+    private int categoriaId;
+    private int sedeId;
 
     public Mentoria() {
 
@@ -33,43 +33,43 @@ public class Mentoria {
                 ", online=" + online +
                 ", nome='" + nome + '\'' +
                 ", sede=" + sede +
-                ", usuarioid=" + usuarioid +
-                ", categoriaid=" + categoriaid +
-                ", sedeid=" + sedeid +
+                ", usuarioId=" + usuarioId +
+                ", categoriaId=" + categoriaId +
+                ", sedeId=" + sedeId +
                 '}';
     }
 
-    public int getUsuarioid() {
-        return usuarioid;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuarioid(int usuarioid) {
-        this.usuarioid = usuarioid;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public int getCategoriaid() {
-        return categoriaid;
+    public int getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCategoriaid(int categoriaid) {
-        this.categoriaid = categoriaid;
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
     }
 
-    public int getSedeid() {
-        return sedeid;
+    public int getSedeId() {
+        return sedeId;
     }
 
-    public void setSedeid(int sedeid) {
-        this.sedeid = sedeid;
+    public void setSedeId(int sedeId) {
+        this.sedeId = sedeId;
     }
 
-    public Mentoria(boolean ativa, boolean online, String nome, int usuarioid, int categoriaid, int sedeid) {
+    public Mentoria(boolean ativa, boolean online, String nome, int usuarioId, int categoriaId, int sedeId) {
         this.ativa = ativa;
         this.online = online;
         this.nome = nome;
-        this.usuarioid = usuarioid;
-        this.categoriaid = categoriaid;
-        this.sedeid = sedeid;
+        this.usuarioId = usuarioId;
+        this.categoriaId = categoriaId;
+        this.sedeId = sedeId;
     }
 
     public Mentoria(Usuario usuario, Categoria categoria, boolean ativa, boolean online, String nome, Sede sede) {
