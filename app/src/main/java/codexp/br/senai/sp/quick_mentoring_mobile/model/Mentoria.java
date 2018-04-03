@@ -6,7 +6,7 @@ package codexp.br.senai.sp.quick_mentoring_mobile.model;
 
 public class Mentoria {
 
-    private int mentoriaId;
+    private int id;
     private Usuario usuario;
     private Categoria categoria;
     private boolean ativa;
@@ -26,7 +26,7 @@ public class Mentoria {
     @Override
     public String toString() {
         return "Mentoria{" +
-                "mentoriaId=" + mentoriaId +
+                "id=" + id +
                 ", usuario=" + usuario +
                 ", categoria=" + categoria +
                 ", ativa=" + ativa +
@@ -82,11 +82,11 @@ public class Mentoria {
     }
 
     public int getMentoriaId() {
-        return mentoriaId;
+        return id;
     }
 
     public void setMentoriaId(int mentoriaId) {
-        this.mentoriaId = mentoriaId;
+        this.id = id;
     }
 
     public Usuario getUsuario() {
@@ -137,8 +137,8 @@ public class Mentoria {
         this.sede = sede;
     }
 
-    public Mentoria(int mentoriaId, Usuario usuario, Categoria categoria, boolean ativa, boolean online, String nome, Sede sede) {
-        this.mentoriaId = mentoriaId;
+    public Mentoria(int id, Usuario usuario, Categoria categoria, boolean ativa, boolean online, String nome, Sede sede) {
+        this.id = id;
         this.usuario = usuario;
         this.categoria = categoria;
         this.ativa = ativa;

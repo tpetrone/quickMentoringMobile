@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
+import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 
@@ -14,7 +15,7 @@ import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMento
  * Created by Helena Strada on 22/03/2018.
  */
 
-public class MentoriaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MentoriaViewHolder extends RecyclerView.ViewHolder {
 
     public final TextView nome;
     public final TextView categoria;
@@ -27,7 +28,6 @@ public class MentoriaViewHolder extends RecyclerView.ViewHolder implements View.
 
         nome = view.findViewById(R.id.tvNomeMentoria);
         categoria = view.findViewById(R.id.tvCategoriaMentoria);
-        view.setOnClickListener(this);
     }
 
     public void preencher(Mentoria mentoria) {
@@ -36,9 +36,11 @@ public class MentoriaViewHolder extends RecyclerView.ViewHolder implements View.
         categoria.setText(mentoria.getCategoria().getNome());
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(v.getContext(), VisualizarMentoria.class);
-        v.getContext().startActivity(intent);
+    public void bind(final Mentoria mentoria, final OnClickListener listener) {
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(mentoria);
+            }
+        });
     }
 }

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
+import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import retrofit2.Call;
@@ -54,6 +56,13 @@ public class HomeMentoradoActivity extends AppCompatActivity
     }
 
     private void carregarInformacoesDasMentorias() {
+        final OnClickListener listener;
+        listener = new OnClickListener() {
+            @Override
+            public void onItemClick(Mentoria mentoria) {
+                Log.d("log", getString(mentoria.getMentoriaId()));
+            }
+        };
 
         Call<List<Mentoria>> call = new RetrofitConfig().getRestInterface().listarMentoriasDosMentores();
         call.enqueue(new Callback<List<Mentoria>>() {
@@ -62,7 +71,7 @@ public class HomeMentoradoActivity extends AppCompatActivity
                 if (response.isSuccessful()) {
                     mentoriasApi = response.body();
                     if (mentoriasApi != null) {
-                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, getApplicationContext()));
+                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, listener, getApplicationContext()));
                         RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                         rvListagemMentorias.setLayoutManager(layout);
                     } else {

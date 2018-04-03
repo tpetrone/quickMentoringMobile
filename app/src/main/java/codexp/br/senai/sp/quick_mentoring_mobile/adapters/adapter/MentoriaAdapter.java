@@ -11,6 +11,7 @@ import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.holder.MentoriaViewHolder;
+import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 
 /**
@@ -19,12 +20,14 @@ import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 
 public class MentoriaAdapter extends RecyclerView.Adapter{
 
+    private final OnClickListener listener;
     private List<Mentoria> mentorias;
     private Context context;
 
-    public MentoriaAdapter(List<Mentoria> mentorias, Context context) {
+    public MentoriaAdapter(List<Mentoria> mentorias, OnClickListener listener, Context context) {
         this.mentorias = mentorias;
         this.context = context;
+        this.listener = listener;
     }
 
     @Override
@@ -37,11 +40,10 @@ public class MentoriaAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         MentoriaViewHolder viewHolder = (MentoriaViewHolder) holder;
+        viewHolder.bind(mentorias.get(position), listener);
         Mentoria mentoria = mentorias.get(position);
         viewHolder.preencher(mentoria);
-
     }
 
     @Override

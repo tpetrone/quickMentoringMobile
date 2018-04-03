@@ -32,9 +32,12 @@ import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
+import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.LoginActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -87,17 +90,24 @@ public class HomeMentorActivity extends AppCompatActivity
     }
 
     private void carregarInformacoesDasMentorias() {
+        final OnClickListener listener;
+        listener = new OnClickListener() {
+            @Override
+            public void onItemClick(Mentoria mentoria) {
+                Intent intent = new Intent(HomeMentorActivity.this, VisualizarMentoria.class);
+                intent.putExtra("mentoriaId", mentoria.getMentoriaId());
+                startActivity(intent);
+            }
+        };
+
         Call<List<Mentoria>> call = new RetrofitConfig(token).getRestInterface().listarMentoriasDoMentor(usuarioId);
         call.enqueue(new Callback<List<Mentoria>>() {
-            ObjectMapper mapper = new ObjectMapper();
-            Mentoria mentoria = new Mentoria();
-
             @Override
             public void onResponse(Call<List<Mentoria>> call, Response<List<Mentoria>> response) {
                 if (response.isSuccessful()) {
                     mentoriasApi = response.body();
                     if (mentoriasApi != null) {
-                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, getApplicationContext()));
+                        rvListagemMentorias.setAdapter(new MentoriaAdapter(mentoriasApi, listener, getApplicationContext()));
                         RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                         rvListagemMentorias.setLayoutManager(layout);
                     } else {

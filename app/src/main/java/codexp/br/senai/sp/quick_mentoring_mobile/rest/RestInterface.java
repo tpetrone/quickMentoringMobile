@@ -30,6 +30,9 @@ public interface RestInterface {
     @GET("mentor/{id}/mentorias")
     Call<List<Mentoria>> listarMentoriasDoMentor(@Path("id") int id);
 
+    @GET("mentoria/{id}")
+    Call<Mentoria> listarMentoria(@Path("id") int id);
+
     @GET("categoria")
     Call<List<Categoria>> listarCategoriasDosMentores();
 

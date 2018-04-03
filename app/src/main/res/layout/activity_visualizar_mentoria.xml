@@ -7,7 +7,7 @@
     tools:context="codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvNomeMentoria"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginTop="4dp"
@@ -22,7 +22,7 @@
         android:layout_marginTop="8dp"
         android:text="Categoria"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNomeMentoria" />
 
     <TextView
         android:id="@+id/textView4"
