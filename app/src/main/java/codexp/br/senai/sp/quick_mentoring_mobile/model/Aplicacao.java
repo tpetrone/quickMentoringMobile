@@ -9,6 +9,7 @@ public class Aplicacao {
     private Usuario usuario;
     private Mentoria mentoria;
     private String formulario;
+    private boolean aceite;
 
     private int usuarioId;
     private int mentoriaId;
@@ -20,6 +21,7 @@ public class Aplicacao {
                 ", usuarioId=" + usuarioId +
                 ", mentoriaId=" + mentoriaId +
                 ", formaulario=" + formulario +
+                ", aceite=" + aceite +
                 '}';
     }
 
