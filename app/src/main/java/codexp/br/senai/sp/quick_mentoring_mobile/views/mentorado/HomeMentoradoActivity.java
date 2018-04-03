@@ -1,6 +1,8 @@
 package codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -22,8 +24,11 @@ import java.util.List;
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
+import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.LoginActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.CadastrarMentoriaActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,17 +39,25 @@ public class HomeMentoradoActivity extends AppCompatActivity
 
     private RecyclerView rvListagemMentorias;
     private List<Mentoria> mentoriasApi;
+    private String token;
+    private int usuarioId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_mentorado);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+        usuarioId = sharedPreferences.getInt("usuarioId", 0);
+
+
         rvListagemMentorias = findViewById(R.id.rvListagemMentorias);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.home_mentorado);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -67,7 +80,7 @@ public class HomeMentoradoActivity extends AppCompatActivity
             }
         };
 
-        Call<List<Mentoria>> call = new RetrofitConfig().getRestInterface().listarMentoriasDosMentores();
+        Call<List<Mentoria>> call = new RetrofitConfig(token).getRestInterface().listarMentoriasDosMentores();
         call.enqueue(new Callback<List<Mentoria>>() {
             @Override
             public void onResponse(Call<List<Mentoria>> call, Response<List<Mentoria>> response) {
@@ -93,7 +106,7 @@ public class HomeMentoradoActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.home_mentorado);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -126,21 +139,12 @@ public class HomeMentoradoActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_aplicacoes) {
+            Intent intent = new Intent(HomeMentoradoActivity.this, MinhasAplicacoes.class);
+            startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.home_mentorado);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
