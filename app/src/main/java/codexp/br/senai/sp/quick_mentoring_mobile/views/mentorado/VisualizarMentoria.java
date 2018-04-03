@@ -1,7 +1,9 @@
-package codexp.br.senai.sp.quick_mentoring_mobile;
+package codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import codexp.br.senai.sp.quick_mentoring_mobile.R;
 
 public class VisualizarMentoria extends AppCompatActivity {
 
