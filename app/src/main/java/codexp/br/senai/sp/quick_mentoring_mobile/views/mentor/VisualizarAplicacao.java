@@ -14,6 +14,9 @@ import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Aplicacao;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Perfil;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,9 +61,19 @@ public class VisualizarAplicacao extends AppCompatActivity {
                         Aplicacao aplicacao = response.body();
                         if (aplicacao != null) {
                             Mentoria mentoria = aplicacao.getMentoria();
-                            Log.d("mentoria", mentoria.getNome());
+                            Usuario usuario = aplicacao.getUsuario();
+                            Perfil perfil = usuario.getPerfil();
+                            Sede sede = mentoria.getSede();
+
+                            tvNome.setText(perfil.getNome());
+
+                            tvMiniBio.setText(perfil.getMiniBio());
+
+                            tvCEP.setText(perfil.getCep());
+
+                            tvSede.setText(sede.getNome());
                         } else {
-                            Toast.makeText(getApplicationContext(), "Não há aplicacaos cadastradas.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Não há aplicacoes cadastradas.", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
