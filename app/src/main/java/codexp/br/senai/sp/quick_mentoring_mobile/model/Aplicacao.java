@@ -34,4 +34,11 @@ public class Aplicacao {
     }
 
     public String getMentoradoNome() { return usuario.getPerfil().getNome(); }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Mentoria getMentoria() {return mentoria;}
+
 }
