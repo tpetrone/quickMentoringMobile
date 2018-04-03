@@ -43,4 +43,7 @@ public interface RestInterface {
     @POST("mentoria")
     Call<Mentoria> cadastrarMentoria(@Body Mentoria mentoria);
 
+    @GET("aplicacao/{id}")
+    Call<Aplicacao> lerAplicacao(@Path("id")int id);
+
 }

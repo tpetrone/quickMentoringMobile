@@ -55,7 +55,7 @@ public class VisualizarAplicacoes extends AppCompatActivity {
         listener = new AplicacaoOnClickListener() {
             @Override
             public void onItemClick(Aplicacao aplicacao) {
-                Intent intent = new Intent(VisualizarAplicacoes.this, VisualizarMentoria.class);
+                Intent intent = new Intent(VisualizarAplicacoes.this, VisualizarAplicacao.class);
                 intent.putExtra("aplicacaoId", aplicacao.getId());
                 startActivity(intent);
             }

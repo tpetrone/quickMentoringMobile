@@ -30,7 +30,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.mentor.CadastrarMentoriaActivity" />
         <activity android:name=".views.mentorado.VisualizarMentoria" />
-        <activity android:name=".views.mentor.VisualizarAplicacoes"></activity>
+        <activity android:name=".views.mentor.VisualizarAplicacoes" />
+        <activity android:name=".views.mentor.VisualizarAplicacao"></activity>
     </application>
 
 </manifest>

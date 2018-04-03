@@ -81,9 +81,7 @@ public class Mentoria {
         this.sede = sede;
     }
 
-    public int getMentoriaId() {
-        return id;
-    }
+    public int getMentoriaId() {return id;}
 
     public void setMentoriaId(int mentoriaId) {
         this.id = id;
