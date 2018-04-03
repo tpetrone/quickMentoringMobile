@@ -1,29 +1,20 @@
 package codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.List;
-
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
-import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
-import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +25,11 @@ public class VisualizarMentoria extends AppCompatActivity {
     private String token;
     private int usuarioId;
     private TextView tvNomeMentoria;
+    private TextView tvNomeCategoria;
+    private TextView tvNomeSede;
+    private TextView tvOnline;
+    private TextView tvPresencial;
+    private EditText mtFormulario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +41,11 @@ public class VisualizarMentoria extends AppCompatActivity {
         usuarioId = sharedPreferences.getInt("usuarioId", 0);
 
         tvNomeMentoria = findViewById(R.id.tvNomeMentoria);
+        tvNomeCategoria = findViewById(R.id.tvNomeCategoria);
+        tvNomeSede = findViewById(R.id.tvNomeSede);
+        tvOnline = findViewById(R.id.tvOnline);
+        tvPresencial = findViewById(R.id.tvPresencial);
+        mtFormulario = findViewById(R.id.mtFormulario);
 
         mentoriaId = getIntent().getExtras().getInt("mentoriaId");
         carregarInformacoesDaMentoria();
@@ -60,6 +61,20 @@ public class VisualizarMentoria extends AppCompatActivity {
                     Mentoria mentoria = response.body();
                     if (mentoria != null) {
                         tvNomeMentoria.setText(mentoria.getNome());
+
+                        Categoria categoria = mentoria.getCategoria();
+                        tvNomeCategoria.setText(categoria.getNome());
+                        Sede sede = mentoria.getSede();
+                        tvNomeSede.setText(sede.getNome());
+
+                        if (mentoria.isOnline()){
+                            tvOnline.setText(String.valueOf(tvOnline));
+                            tvPresencial.setText(String.valueOf(""));
+                        }
+                        else {
+                            tvPresencial.setText(String.valueOf("Presencial"));
+                            tvOnline.setText(String.valueOf(""));
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), "Não há mentorias cadastradas.", Toast.LENGTH_LONG).show();
                     }
