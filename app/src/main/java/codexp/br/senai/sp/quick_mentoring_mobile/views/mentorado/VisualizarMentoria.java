@@ -1,29 +1,16 @@
 package codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.List;
-
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
-import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
-import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

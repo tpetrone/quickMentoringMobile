@@ -1,6 +1,5 @@
 package codexp.br.senai.sp.quick_mentoring_mobile.adapters.holder;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -9,7 +8,6 @@ import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapter;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 
 /**
  * Created by Helena Strada on 22/03/2018.

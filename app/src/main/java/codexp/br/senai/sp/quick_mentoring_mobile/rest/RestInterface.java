@@ -2,6 +2,7 @@ package codexp.br.senai.sp.quick_mentoring_mobile.rest;
 
 import java.util.List;
 
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Aplicacao;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
@@ -32,6 +33,9 @@ public interface RestInterface {
 
     @GET("mentoria/{id}")
     Call<Mentoria> listarMentoria(@Path("id") int id);
+
+    @GET("mentoria/{id}/aplicacoes")
+    Call<List<Aplicacao>> listarAplicacoesDaMentoria(@Path("id") int id);
 
     @GET("categoria")
     Call<List<Categoria>> listarCategoriasDosMentores();

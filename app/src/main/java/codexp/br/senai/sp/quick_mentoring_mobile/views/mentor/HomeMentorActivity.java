@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,14 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
@@ -36,12 +26,6 @@ import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickList
 import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.LoginActivity;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -94,7 +78,7 @@ public class HomeMentorActivity extends AppCompatActivity
         listener = new OnClickListener() {
             @Override
             public void onItemClick(Mentoria mentoria) {
-                Intent intent = new Intent(HomeMentorActivity.this, VisualizarMentoria.class);
+                Intent intent = new Intent(HomeMentorActivity.this, VisualizarAplicacoes.class);
                 intent.putExtra("mentoriaId", mentoria.getMentoriaId());
                 startActivity(intent);
             }

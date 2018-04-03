@@ -24,6 +24,7 @@ import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.MentoriaAdapte
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +61,9 @@ public class HomeMentoradoActivity extends AppCompatActivity
         listener = new OnClickListener() {
             @Override
             public void onItemClick(Mentoria mentoria) {
-                Log.d("log", getString(mentoria.getMentoriaId()));
+                Intent intent = new Intent(HomeMentoradoActivity.this, VisualizarMentoria.class);
+                intent.putExtra("mentoriaId", mentoria.getMentoriaId());
+                startActivity(intent);
             }
         };
 

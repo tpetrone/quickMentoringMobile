@@ -29,7 +29,8 @@
             android:label="@string/title_activity_home_mentorado"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.mentor.CadastrarMentoriaActivity" />
-        <activity android:name=".views.mentorado.VisualizarMentoria"></activity>
+        <activity android:name=".views.mentorado.VisualizarMentoria" />
+        <activity android:name=".views.mentor.VisualizarAplicacoes"></activity>
     </application>
 
 </manifest>
