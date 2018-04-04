@@ -8,38 +8,44 @@
 
     <EditText
         android:id="@+id/etEditarNome"
-        android:layout_width="wrap_content"
+        android:layout_width="341dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/etMiniBio"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etMiniBio"
-        android:layout_width="wrap_content"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/etCep"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etCep"
-        android:layout_width="wrap_content"
+        android:layout_width="337dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/spEditarSede"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
