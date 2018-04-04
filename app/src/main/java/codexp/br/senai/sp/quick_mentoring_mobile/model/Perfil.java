@@ -12,10 +12,6 @@ public class Perfil {
     private String cep;
     private int sedeId;
 
-    public Perfil() {
-
-    }
-
     @Override
     public String toString() {
         return "Perfil{" +

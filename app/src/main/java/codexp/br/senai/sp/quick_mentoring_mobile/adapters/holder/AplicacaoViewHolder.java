@@ -17,6 +17,7 @@ public class AplicacaoViewHolder extends RecyclerView.ViewHolder {
 
     public final TextView nome;
     public final TextView status;
+    public final TextView nomeMentorado;
 
     public final AplicacaoAdapter adapter;
     private int aplicacaoId;
@@ -27,12 +28,15 @@ public class AplicacaoViewHolder extends RecyclerView.ViewHolder {
 
         nome = view.findViewById(R.id.tvNomeMentoria);
         status = view.findViewById(R.id.tvStatus);
+        nomeMentorado = view.findViewById(R.id.tvNomeMentorado);
     }
 
     public void preencher(Aplicacao aplicacao) {
         aplicacaoId = aplicacao.getId();
 
-        nome.setText(aplicacao.getMentoria().getNome());
+        nome.setText("Aplicação para: " + aplicacao.getMentoria().getNome());
+        nomeMentorado.setText("Aplicante: " + aplicacao.getUsuario().getPerfil().getNome());
+
 
         if (aplicacao.getAceite()) {
             status.setText("Aceita");

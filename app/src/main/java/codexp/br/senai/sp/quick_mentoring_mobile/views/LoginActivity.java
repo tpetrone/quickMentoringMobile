@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private String token;
+    private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,20 @@ public class LoginActivity extends AppCompatActivity {
         tilLoginSenha = findViewById(R.id.tilLoginSenha);
         btnRealizarLogin = findViewById(R.id.btnRealizarLogin);
 
-        tilLoginUsuario.getEditText().setText("helena.strada@gmail.com");
-        tilLoginSenha.getEditText().setText("123456");
-
         sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
+
+        try {
+            email = getIntent().getExtras().getString("email");
+            password = getIntent().getExtras().getString("password");
+        } catch(Exception e) {
+            email = "";
+            password= "";
+        }
+
+        tilLoginUsuario.getEditText().setText(email);
+        tilLoginSenha.getEditText().setText(password);
+
 
         btnRealizarLogin.setOnClickListener(new buscaLogin());
 

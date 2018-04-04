@@ -46,18 +46,6 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public Usuario(int usuarioId, String email, String password, String role, boolean ativo) {
-        this.usuarioId = usuarioId;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.ativo = ativo;
-    }
-
-    public Usuario() {
-
-    }
-
 
     public int getUsuarioId() {
         return usuarioId;

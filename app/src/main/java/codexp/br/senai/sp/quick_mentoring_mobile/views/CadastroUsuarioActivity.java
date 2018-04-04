@@ -118,8 +118,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                     if (response.isSuccessful()) {
-                        Intent realizarNovoLogin = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
-                        startActivity(realizarNovoLogin);
+                        Intent intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+                        String email =  tilCadastroEmail.getEditText().getText().toString();
+                        String password =  tilCadastroSenha.getEditText().getText().toString();
+
+                        intent.putExtra("email", email);
+                        intent.putExtra("password", password);
+
+                        startActivity(intent);
                     }
                 }
 

@@ -20,7 +20,7 @@ public interface RestInterface {
     @GET("sede")
     Call<List<Sede>> listarSedes();
 
-    @POST("usuario/cadastrar")
+    @POST("usuario")
     Call<Usuario> salvarUsuario(@Body Usuario usuario);
 
     @POST("usuario/login")
