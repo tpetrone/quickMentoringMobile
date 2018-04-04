@@ -11,6 +11,7 @@ public class Aplicacao {
     private String formulario;
     private boolean aceite;
 
+    // Para fazer o POST
     private int usuarioId;
     private int mentoriaId;
 
@@ -28,6 +29,12 @@ public class Aplicacao {
     public Aplicacao(Usuario usuario, Mentoria mentoria, String formulario) {
         this.usuario = usuario;
         this.mentoria = mentoria;
+        this.formulario = formulario;
+    }
+
+    public Aplicacao(int usuarioId, int mentoriaId, String formulario) {
+        this.usuarioId = usuarioId;
+        this.mentoriaId = mentoriaId;
         this.formulario = formulario;
     }
 
