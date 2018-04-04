@@ -115,6 +115,8 @@ public class Mentoria {
         return online;
     }
 
+    public boolean isActive() { return ativa; }
+
     public void setOnline(boolean online) {
         this.online = online;
     }

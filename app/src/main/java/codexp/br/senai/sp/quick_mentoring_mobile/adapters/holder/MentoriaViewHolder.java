@@ -17,6 +17,8 @@ public class MentoriaViewHolder extends RecyclerView.ViewHolder {
 
     public final TextView nome;
     public final TextView categoria;
+    public final TextView status;
+
     private int mentoriaId;
     public final MentoriaAdapter adapter;
 
@@ -26,12 +28,18 @@ public class MentoriaViewHolder extends RecyclerView.ViewHolder {
 
         nome = view.findViewById(R.id.tvNomeMentoria);
         categoria = view.findViewById(R.id.tvCategoriaMentoria);
+        status = view.findViewById(R.id.tvStatusMentoria);
     }
 
     public void preencher(Mentoria mentoria) {
         mentoriaId = mentoria.getMentoriaId();
         nome.setText(mentoria.getNome());
         categoria.setText(mentoria.getCategoria().getNome());
+        if (mentoria.isActive()) {
+            status.setText(String.valueOf("Ativa"));
+        } else {
+            status.setText(String.valueOf("Concluída"));
+        }
     }
 
     public void bind(final Mentoria mentoria, final OnClickListener listener) {

@@ -72,7 +72,7 @@ public class MinhasAplicacoes extends AppCompatActivity implements NavigationVie
             @Override
             public void onItemClick(Aplicacao aplicacao) {
                 Intent intent = new Intent(MinhasAplicacoes.this, VisualizarMentoria.class);
-                intent.putExtra("aplicacaoId", aplicacao.getId());
+                intent.putExtra("aplicacaoId", aplicacao.getMentoria().getMentoriaId());
                 startActivity(intent);
             }
         };
@@ -99,6 +99,35 @@ public class MinhasAplicacoes extends AppCompatActivity implements NavigationVie
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.minhas_aplicacoes);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home_mentorado, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -7,9 +7,7 @@ import android.widget.TextView;
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.adapter.AplicacaoAdapter;
 import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.AplicacaoOnClickListener;
-import codexp.br.senai.sp.quick_mentoring_mobile.adapters.interfaces.OnClickListener;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Aplicacao;
-import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 
 /**
  * Created by tpetrone on 03/04/18.
@@ -18,6 +16,8 @@ import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 public class AplicacaoViewHolder extends RecyclerView.ViewHolder {
 
     public final TextView nome;
+    public final TextView status;
+
     public final AplicacaoAdapter adapter;
     private int aplicacaoId;
 
@@ -25,12 +25,20 @@ public class AplicacaoViewHolder extends RecyclerView.ViewHolder {
         super(view);
         this.adapter = adapter;
 
-        nome = view.findViewById(R.id.tvNomeMentorado);
+        nome = view.findViewById(R.id.tvNomeMentoria);
+        status = view.findViewById(R.id.tvStatus);
     }
 
     public void preencher(Aplicacao aplicacao) {
         aplicacaoId = aplicacao.getId();
-        nome.setText(aplicacao.getMentoradoNome());
+
+        nome.setText(aplicacao.getMentoria().getNome());
+
+        if (aplicacao.getAceite()) {
+            status.setText("Aceita");
+        } else {
+            status.setText("Recusada");
+        }
     }
 
     public void bind(final Aplicacao aplicacao, final AplicacaoOnClickListener listener) {

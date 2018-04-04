@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -37,8 +38,9 @@ import retrofit2.Response;
 public class VisualizarMentoria extends AppCompatActivity {
 
     private int mentoriaId;
-    private String token;
     private int usuarioId;
+    private String token;
+
     private TextView tvNomeMentoria;
     private TextView tvNomeCategoria;
     private TextView tvNomeSede;
@@ -46,6 +48,7 @@ public class VisualizarMentoria extends AppCompatActivity {
     private TextView tvPresencial;
     private EditText mtFormulario;
     private Button btContinuar;
+
     private Mentoria mentoria;
 
     @Override
@@ -75,27 +78,29 @@ public class VisualizarMentoria extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            if (mentoria.isActive()) {
+                Call<Aplicacao> call = new RetrofitConfig(token).getRestInterface().cadastrarAplicacao(
+                        new Aplicacao(usuarioId, mentoriaId, mtFormulario.getEditableText().toString()
+                        ));
 
-            Call<Aplicacao> call = new RetrofitConfig(token).getRestInterface().cadastrarAplicacao(
-                    new Aplicacao(usuarioId, mentoriaId, mtFormulario.getEditableText().toString()
-                    ));
-
-            call.enqueue(new Callback<Aplicacao>() {
-                @Override
-                public void onResponse(Call<Aplicacao> call, Response<Aplicacao> response) {
-                    if (response.isSuccessful()) {
-                        Intent intent = new Intent(VisualizarMentoria.this, MinhasAplicacoes.class);
-                        startActivity(intent);
+                call.enqueue(new Callback<Aplicacao>() {
+                    @Override
+                    public void onResponse(Call<Aplicacao> call, Response<Aplicacao> response) {
+                        if (response.isSuccessful()) {
+                            Intent intent = new Intent(VisualizarMentoria.this, MinhasAplicacoes.class);
+                            startActivity(intent);
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<Aplicacao> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Erro ao fazer login.", Toast.LENGTH_LONG).show();
-                    Log.d("ErroLogin: ", t.getMessage().toString());
-                }
-            });
-
+                    @Override
+                    public void onFailure(Call<Aplicacao> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Erro ao fazer login.", Toast.LENGTH_LONG).show();
+                        Log.d("ErroLogin: ", t.getMessage().toString());
+                    }
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "Ação impossível", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -122,6 +127,7 @@ public class VisualizarMentoria extends AppCompatActivity {
                             tvPresencial.setText(String.valueOf("Presencial"));
                             tvOnline.setText(String.valueOf(""));
                         }
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Não há mentorias cadastradas.", Toast.LENGTH_LONG).show();
                     }

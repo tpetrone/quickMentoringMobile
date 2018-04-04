@@ -42,6 +42,8 @@ public class Aplicacao {
         return id;
     }
 
+    public boolean getAceite() { return aceite; }
+
     public String getMentoradoNome() { return usuario.getPerfil().getNome(); }
 
     public Usuario getUsuario() {

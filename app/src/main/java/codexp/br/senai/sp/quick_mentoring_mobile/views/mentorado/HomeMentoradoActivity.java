@@ -47,15 +47,15 @@ public class HomeMentoradoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_mentorado);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         final SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
         usuarioId = sharedPreferences.getInt("usuarioId", 0);
 
 
         rvListagemMentorias = findViewById(R.id.rvListagemMentorias);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.home_mentorado);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

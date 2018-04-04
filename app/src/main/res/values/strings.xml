@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">quick-mentoring-mobile</string>
-    <string name="title_activity_home_mentor">HomeMentorActivity</string>
-    <string name="title_activity_home_mentorado">HomeMentoradoActivity</string>
+    <string name="app_name">Quck Mentoring Mobile</string>
+    <string name="title_activity_home_mentor">Home Mentor</string>
+    <string name="title_activity_home_mentorado">Home Mentorado</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Abrir Menu</string>
+    <string name="navigation_drawer_close">Fechar Menu</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_visualizar_mentoria">VisualizarMentoria</string>
-    <string name= "title_activity_minhas_aplicacoes">MinhasAplicacoes</string>
+    <string name="title_activity_visualizar_mentoria">Visualização de Mentoria</string>
+    <string name= "title_activity_minhas_aplicacoes">Minhas Aplicações</string>
 </resources>
