@@ -84,7 +84,7 @@ public class VisualizarMentoria extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Aplicacao> call, Response<Aplicacao> response) {
                     if (response.isSuccessful()) {
-                        Intent intent = new Intent(VisualizarMentoria.this, VisualizarAplicacoes.class);
+                        Intent intent = new Intent(VisualizarMentoria.this, MinhasAplicacoes.class);
                         startActivity(intent);
                     }
                 }
