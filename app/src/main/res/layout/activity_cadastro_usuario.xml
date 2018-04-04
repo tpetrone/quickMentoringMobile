@@ -38,7 +38,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroNome"
+        android:id="@+id/tilEditarNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -53,13 +53,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroMiniBio"
+        android:id="@+id/tilEditarMiniBio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroNome">
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarNome">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -68,13 +68,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroCep"
+        android:id="@+id/tilEditarCep"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroMiniBio">
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarMiniBio">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -83,13 +83,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
-        android:id="@+id/spCadastroSedes"
+        android:id="@+id/spEditarSedes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroCep" />
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarCep" />
 
     <Button
         android:id="@+id/btCadastroTela"
@@ -98,7 +98,7 @@
         android:layout_margin="8dp"
         android:text="Cadastrar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spCadastroSedes" />
+        app:layout_constraintTop_toBottomOf="@+id/spEditarSedes" />
 
 
 </android.support.constraint.ConstraintLayout>

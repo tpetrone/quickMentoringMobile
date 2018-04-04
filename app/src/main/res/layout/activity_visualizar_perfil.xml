@@ -8,14 +8,14 @@
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroNome"
+        android:id="@+id/tilEditarNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="127dp">
+        tools:layout_editor_absoluteY="161dp">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -24,13 +24,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroMiniBio"
+        android:id="@+id/tilEditarMiniBio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroNome">
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarNome">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -39,13 +39,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilCadastroCep"
+        android:id="@+id/tilEditarCep"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroMiniBio">
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarMiniBio">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -54,21 +54,22 @@
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
-        android:id="@+id/spCadastroSedes"
+        android:id="@+id/spEditarSedes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilCadastroCep" />
+        app:layout_constraintTop_toBottomOf="@+id/tilEditarCep" />
+
     <Button
-        android:id="@+id/btCadastroTela"
+        android:id="@+id/btEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Cadastrar"
+        android:text="confirmar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spCadastroSedes" />
+        app:layout_constraintTop_toBottomOf="@+id/spEditarSedes" />
 
     <ImageView
         android:id="@+id/ivPerfil"
@@ -77,11 +78,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tilCadastroNome"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/tilEditarNome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27"
         app:srcCompat="@mipmap/ic_launcher" />
 </android.support.constraint.ConstraintLayout>

@@ -47,10 +47,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
         tilCadastroEmail = findViewById(R.id.tilCadastroEmail);
         tilCadastroSenha = findViewById(R.id.tilCadastroSenha);
-        tilCadastroNome = findViewById(R.id.tilCadastroNome);
-        tilCadastroMiniBio = findViewById(R.id.tilCadastroMiniBio);
-        tilCadastroCep = findViewById(R.id.tilCadastroCep);
-        spCadastroSedes = findViewById(R.id.spCadastroSedes);
+        tilCadastroNome = findViewById(R.id.tilEditarNome);
+        tilCadastroMiniBio = findViewById(R.id.tilEditarMiniBio);
+        tilCadastroCep = findViewById(R.id.tilEditarCep);
+        spCadastroSedes = findViewById(R.id.spEditarSedes);
         btCadastroTela = findViewById(R.id.btCadastroTela);
 
         extras = getIntent().getExtras();
