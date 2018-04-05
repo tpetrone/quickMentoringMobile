@@ -6,16 +6,12 @@ package codexp.br.senai.sp.quick_mentoring_mobile.model;
 
 public class Sede {
 
-    private int sedeId;
+    private int id;
     private String nome;
 
-    public Sede(int sedeId, String nome) {
-        this.sedeId = sedeId;
+    public Sede(int id, String nome) {
+        this.id = id;
         this.nome = nome;
-    }
-
-    public Sede() {
-
     }
 
     public Sede(String nome) {
@@ -28,11 +24,11 @@ public class Sede {
     }
 
     public int getSedeId() {
-        return sedeId;
+        return id;
     }
 
     public void setSedeId(int sedeId) {
-        this.sedeId = sedeId;
+        this.id = sedeId;
     }
 
     public String getNome() {

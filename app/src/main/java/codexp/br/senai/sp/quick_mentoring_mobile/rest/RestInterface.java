@@ -5,6 +5,7 @@ import java.util.List;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Aplicacao;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Perfil;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
 import okhttp3.ResponseBody;
@@ -56,4 +57,9 @@ public interface RestInterface {
     @PUT("aplicacao/{id}")
     Call<Aplicacao> updateAplicacao(@Body Aplicacao aplicacao, @Path("id") int id);
 
+    @GET("usuario/{id}/perfil")
+    Call<Perfil> lerPerfil(@Path("id") int id);
+
+    @PUT("usuario/{id}/perfil")
+    Call<Perfil> updatePerfil(@Body Perfil perfil, @Path("id") int id);
 }

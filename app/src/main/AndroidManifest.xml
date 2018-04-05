@@ -36,7 +36,7 @@
             android:label="@string/title_activity_minhas_aplicacoes"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".views.mentor.VisualizarAplicacao" />
-        <activity android:name=".VisualizarPerfil"></activity>
+        <activity android:name=".views.VisualizarPerfil"></activity>
     </application>
 
 </manifest>
