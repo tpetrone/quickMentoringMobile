@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                             accessToken = objeto.getString("accessToken");
 
                             JSONObject usuarioObjeto = new JSONObject(String.valueOf(objeto.getJSONObject("usuario")));
-                            usuarioLogado = (int) usuarioObjeto.get("usuarioId");
+                            usuarioLogado = (int) usuarioObjeto.get("id");
                             String perfil = (String) usuarioObjeto.get("role");
 
                             SharedPreferences.Editor editor = sharedPreferences.edit();
