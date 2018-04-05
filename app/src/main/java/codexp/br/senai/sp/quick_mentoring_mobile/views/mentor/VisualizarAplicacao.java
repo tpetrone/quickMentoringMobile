@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,8 +19,6 @@ import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Perfil;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.MinhasAplicacoes;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -114,7 +111,7 @@ public class VisualizarAplicacao extends AppCompatActivity {
                         tvMiniBio.setText(perfil.getMiniBio());
                         tvCEP.setText(perfil.getCep());
                         tvSede.setText(sede.getNome());
-                        tvFormulario.setText(aplicacao.getFormulario());
+                        tvFormulario.setText(aplicacao.getJustificativa());
                     } else {
                         Toast.makeText(getApplicationContext(), "Não há aplicacoes cadastradas.", Toast.LENGTH_LONG).show();
                     }

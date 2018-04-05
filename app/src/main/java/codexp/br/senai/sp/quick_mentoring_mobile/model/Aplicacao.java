@@ -10,24 +10,24 @@ public class Aplicacao {
     private int id;
     private Usuario usuario;
     private Mentoria mentoria;
-    private String formulario;
+    private String justificativa;
     private boolean aceite;
 
-    public Aplicacao(Usuario usuario, Mentoria mentoria, String formulario, boolean aceite) {
+    public Aplicacao(Usuario usuario, Mentoria mentoria, String justificativa, boolean aceite) {
         this.usuario = usuario;
         this.mentoria = mentoria;
         this.aceite = aceite;
-        this.formulario = formulario;
+        this.justificativa = justificativa;
     }
 
     // Para fazer o POST
     private int usuarioId;
     private int mentoriaId;
 
-    public Aplicacao(int usuarioId, int mentoriaId, String formulario) {
+    public Aplicacao(int usuarioId, int mentoriaId, String justificativa) {
         this.usuarioId = usuarioId;
         this.mentoriaId = mentoriaId;
-        this.formulario = formulario;
+        this.justificativa = justificativa;
     }
 
     //Para fazer o PATCH
@@ -41,7 +41,7 @@ public class Aplicacao {
                 "id=" + id +
                 ", usuarioId=" + usuarioId +
                 ", mentoriaId=" + mentoriaId +
-                ", formulario=" + formulario +
+                ", justificativa=" + justificativa +
                 ", aceite=" + aceite +
                 '}';
     }
@@ -60,5 +60,5 @@ public class Aplicacao {
 
     public Mentoria getMentoria() {return mentoria;}
 
-    public String getFormulario() { return formulario; }
+    public String getJustificativa() { return justificativa; }
 }
