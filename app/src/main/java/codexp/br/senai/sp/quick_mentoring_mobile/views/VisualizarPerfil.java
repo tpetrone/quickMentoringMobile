@@ -23,8 +23,10 @@ import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Perfil;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
+import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.CadastrarMentoriaActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.HomeMentoradoActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +47,8 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     private ArrayAdapter<Sede> sedeAdapter;
     private Sede sedePerfil;
     private Perfil perfilApi;
+
+    private String userRole;
 
 
     @Override
@@ -114,17 +118,19 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
 
 
     private void carregaPerfil() {
-        Call<Perfil> call = new RetrofitConfig(token).getRestInterface().lerPerfil(usuarioId);
+        Call<Usuario> call = new RetrofitConfig(token).getRestInterface().lerUsuario(usuarioId);
 
-        call.enqueue(new Callback<Perfil>() {
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<Perfil> call, Response<Perfil> response) {
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
-                    perfilApi = response.body();
-                    if (perfilApi != null) {
+                    Usuario usuario = response.body();
+                    if (usuario != null) {
+                        perfilApi = usuario.getPerfil();
                         etNome.setText(perfilApi.getNome());
                         etMiniBio.setText(perfilApi.getMiniBio());
                         etCep.setText(perfilApi.getCep());
+                        userRole = usuario.getRole();
                         sedeSelecionada = perfilApi.getSede();
                     } else {
                         Toast.makeText(getApplicationContext(), "Não há mentorias cadastradas.", Toast.LENGTH_LONG).show();
@@ -134,7 +140,7 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
             }
 
             @Override
-            public void onFailure(Call<Perfil> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
 
             }
         });
@@ -150,8 +156,13 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
             @Override
             public void onResponse(Call<Perfil> call, Response<Perfil> response) {
                 if (response.isSuccessful()) {
-                    Intent intent = new Intent(VisualizarPerfil.this, HomeMentorActivity.class);
-                    startActivity(intent);
+                    if (userRole.equals("Mentor")) {
+                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentorActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentoradoActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
 

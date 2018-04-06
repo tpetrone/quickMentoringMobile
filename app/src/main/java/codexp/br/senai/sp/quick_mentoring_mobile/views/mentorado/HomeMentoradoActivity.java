@@ -28,6 +28,7 @@ import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.LoginActivity;
+import codexp.br.senai.sp.quick_mentoring_mobile.views.VisualizarPerfil;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.CadastrarMentoriaActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
 import retrofit2.Call;
@@ -127,7 +128,8 @@ public class HomeMentoradoActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(HomeMentoradoActivity.this, VisualizarPerfil.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

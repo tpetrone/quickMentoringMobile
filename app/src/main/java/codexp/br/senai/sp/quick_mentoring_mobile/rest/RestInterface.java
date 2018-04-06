@@ -57,8 +57,8 @@ public interface RestInterface {
     @PUT("aplicacao/{id}")
     Call<Aplicacao> updateAplicacao(@Body Aplicacao aplicacao, @Path("id") int id);
 
-    @GET("usuario/{id}/perfil")
-    Call<Perfil> lerPerfil(@Path("id") int id);
+    @GET("usuario/{id}")
+    Call<Usuario> lerUsuario(@Path("id") int id);
 
     @PUT("usuario/{id}/perfil")
     Call<Perfil> updatePerfil(@Body Perfil perfil, @Path("id") int id);
