@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
@@ -24,9 +23,6 @@ import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,7 +68,6 @@ public class CadastrarMentoriaActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 sedeSelecionada = (Sede) spSedesMentoria.getItemAtPosition(spSedesMentoria.getSelectedItemPosition());
-                Log.d("sedeId", String.valueOf(sedeSelecionada.getSedeId()));
             }
 
             @Override
@@ -85,7 +80,6 @@ public class CadastrarMentoriaActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 categoriaSelecionada = (Categoria) spCategoriasMentoria.getItemAtPosition(spCategoriasMentoria.getSelectedItemPosition());
-                Log.d("sedeId", String.valueOf(categoriaSelecionada.getCategoriaId()));
             }
 
             @Override
@@ -157,7 +151,7 @@ public class CadastrarMentoriaActivity extends AppCompatActivity {
                     , online
                     , tilNomeMentoria.getEditText().getText().toString()
                     , usuarioId
-                    , categoriaSelecionada.getCategoriaId()
+                    , categoriaSelecionada.getId()
                     , sedeSelecionada.getSedeId()
             );
 
