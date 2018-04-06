@@ -61,4 +61,8 @@ public class Aplicacao {
     public Mentoria getMentoria() {return mentoria;}
 
     public String getJustificativa() { return justificativa; }
+
+    public int getMentoriaId() {
+        return mentoriaId;
+    }
 }
