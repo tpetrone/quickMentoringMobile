@@ -67,7 +67,7 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_visualizar_perfil);
 
         ivPerfil = findViewById(R.id.ivPerfil);
-        ivPerfil.setOnClickListener(this);
+        ivPerfil.setOnClickListener(new salvarImagem());
 
         final SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
@@ -163,13 +163,36 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         Perfil perfil = perfilApi;
         perfilApi.setSede(sedeSelecionada);
-        if (v.equals(ivPerfil)) {
-            // Abrir a Galeria de Fotos
-            abrirGalery();
-        }
-        
-    }
+        Call<Perfil> call = new RetrofitConfig(token).getRestInterface().updatePerfil(perfil, usuarioId);
+        call.enqueue(new Callback<Perfil>() {
+            @Override
+            public void onResponse(Call<Perfil> call, Response<Perfil> response) {
+                if (response.isSuccessful()) {
+                    if (userRole.equals("Mentor")) {
+                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentorActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentoradoActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Perfil> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Erro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private class salvarImagem implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            if (view.equals(ivPerfil)) {
+                // Abrir a Galeria de Fotos
+                abrirGalery();
+            }
+        }
+    }
     private void abrirGalery() {
         Intent intent = new Intent();
         intent.setType("image/*");
