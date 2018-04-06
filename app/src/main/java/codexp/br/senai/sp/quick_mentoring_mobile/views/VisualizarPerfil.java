@@ -187,10 +187,7 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     private class salvarImagem implements View.OnClickListener{
         @Override
         public void onClick(View view) {
-            if (view.equals(ivPerfil)) {
-                // Abrir a Galeria de Fotos
                 abrirGalery();
-            }
         }
     }
     private void abrirGalery() {
