@@ -1,38 +1,48 @@
 package codexp.br.senai.sp.quick_mentoring_mobile.views;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import codexp.br.senai.sp.quick_mentoring_mobile.R;
 import codexp.br.senai.sp.quick_mentoring_mobile.commons.AppUtils;
+import codexp.br.senai.sp.quick_mentoring_mobile.commons.Utilitarios;
 import codexp.br.senai.sp.quick_mentoring_mobile.config.RetrofitConfig;
-import codexp.br.senai.sp.quick_mentoring_mobile.model.Categoria;
-import codexp.br.senai.sp.quick_mentoring_mobile.model.Mentoria;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Perfil;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Sede;
 import codexp.br.senai.sp.quick_mentoring_mobile.model.Usuario;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.CadastrarMentoriaActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentor.HomeMentorActivity;
 import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.HomeMentoradoActivity;
-import codexp.br.senai.sp.quick_mentoring_mobile.views.mentorado.VisualizarMentoria;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VisualizarPerfil extends AppCompatActivity implements View.OnClickListener {
+
+    private static int NEW_ACTION = 1;
+    private static final int REQUEST_IMAGE_GALERY = 0;
+    private static final int REQUEST_GALERY_PERMISSION = 1;
+    private ImageView ivPerfil;
 
     private String token;
     private int usuarioId;
@@ -55,6 +65,9 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_perfil);
+
+        ivPerfil = findViewById(R.id.ivPerfil);
+        ivPerfil.setOnClickListener(this);
 
         final SharedPreferences sharedPreferences = getSharedPreferences(AppUtils.SHARED_KEY, Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
@@ -97,8 +110,8 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
                         sedeAdapter = new ArrayAdapter<Sede>(getApplicationContext(), android.R.layout.simple_list_item_1, sedesConsultadas);
                         spCadastroSedes.setAdapter(sedeAdapter);
 
-                        for(int i=0; i < sedeAdapter.getCount(); i++) {
-                            if(sedeSelecionada.toString().equals(sedeAdapter.getItem(i).toString())){
+                        for (int i = 0; i < sedeAdapter.getCount(); i++) {
+                            if (sedeSelecionada.toString().equals(sedeAdapter.getItem(i).toString())) {
                                 spCadastroSedes.setSelection(i);
                                 break;
                             }
@@ -150,26 +163,44 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         Perfil perfil = perfilApi;
         perfilApi.setSede(sedeSelecionada);
+        if (v.equals(ivPerfil)) {
+            // Abrir a Galeria de Fotos
+            abrirGalery();
+        }
+        
+    }
 
-        Call<Perfil> call = new RetrofitConfig(token).getRestInterface().updatePerfil(perfil, usuarioId);
-        call.enqueue(new Callback<Perfil>() {
-            @Override
-            public void onResponse(Call<Perfil> call, Response<Perfil> response) {
-                if (response.isSuccessful()) {
-                    if (userRole.equals("Mentor")) {
-                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentorActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(VisualizarPerfil.this, HomeMentoradoActivity.class);
-                        startActivity(intent);
-                    }
+    private void abrirGalery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            if ((ContextCompat.checkSelfPermission(getBaseContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_GALERY_PERMISSION);
+            } else {
+                startActivityForResult(Intent.createChooser(intent, "Selecione a Foto"),
+                        REQUEST_IMAGE_GALERY);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_GALERY) { // Recebe a Foto da Galeria de Fotos
+            if (data != null) {
+                try {
+                    Uri imageURI = data.getData();
+
+                    Bitmap bitmap = Utilitarios.setPic(ivPerfil.getWidth(), ivPerfil.getHeight(), imageURI, this);
+                    ivPerfil.setImageBitmap(bitmap);
+                    ivPerfil.invalidate();
+                } catch (IOException ex) {
+                    Toast.makeText(this, "Falha ao abrir a Foto", Toast.LENGTH_LONG).show();
                 }
             }
-
-            @Override
-            public void onFailure(Call<Perfil> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Erro: " + t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        }
     }
 }
