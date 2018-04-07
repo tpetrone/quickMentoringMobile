@@ -149,7 +149,12 @@ public class VisualizarPerfil extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         Perfil perfil = perfilApi;
-        perfilApi.setSede(sedeSelecionada);
+        sedeSelecionada = perfilApi.getSede();
+
+        perfil.setNome(etNome.getText().toString());
+        perfil.setCep(etCep.getText().toString());
+        perfil.setMiniBio(etMiniBio.getText().toString());
+        perfil.setSedeId(sedeSelecionada.getSedeId());
 
         Call<Perfil> call = new RetrofitConfig(token).getRestInterface().updatePerfil(perfil, usuarioId);
         call.enqueue(new Callback<Perfil>() {

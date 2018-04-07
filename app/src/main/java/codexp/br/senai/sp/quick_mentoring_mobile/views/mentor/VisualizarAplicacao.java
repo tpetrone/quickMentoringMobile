@@ -80,7 +80,7 @@ public class VisualizarAplicacao extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
                         Intent intent = new Intent(VisualizarAplicacao.this, VisualizarAplicacoes.class);
-                        intent.putExtra("mentoriaId", aplicacao.getMentoria().getMentoriaId());
+                        intent.putExtra("mentoriaId", aplicacao.getMentoriaId());
                         startActivity(intent);
                     }
                 }

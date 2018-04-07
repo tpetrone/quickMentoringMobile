@@ -72,7 +72,7 @@ public class MinhasAplicacoes extends AppCompatActivity implements NavigationVie
             @Override
             public void onItemClick(Aplicacao aplicacao) {
                 Intent intent = new Intent(MinhasAplicacoes.this, VisualizarMentoria.class);
-                intent.putExtra("aplicacaoId", aplicacao.getMentoria().getMentoriaId());
+                intent.putExtra("mentoriaId", aplicacao.getMentoria().getMentoriaId());
                 startActivity(intent);
             }
         };

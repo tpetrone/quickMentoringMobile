@@ -6,11 +6,11 @@ package codexp.br.senai.sp.quick_mentoring_mobile.model;
 
 public class Categoria {
 
-    private int categoriaId;
+    private int id;
     private String nome;
 
-    public Categoria(int categoriaId, String nome) {
-        this.categoriaId = categoriaId;
+    public Categoria(int id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
@@ -27,12 +27,12 @@ public class Categoria {
         return "Categoria: " + nome;
     }
 
-    public int getCategoriaId() {
-        return categoriaId;
+    public int getId() {
+        return id;
     }
 
-    public void setCategoriaId(int categoriaId) {
-        this.categoriaId = categoriaId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

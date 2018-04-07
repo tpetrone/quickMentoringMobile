@@ -6,7 +6,7 @@ package codexp.br.senai.sp.quick_mentoring_mobile.model;
 
 public class Usuario {
 
-    private int usuarioId;
+    private int id;
     private String email;
     private String password;
     private String role;
@@ -29,7 +29,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "usuarioId=" + usuarioId +
+                "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
@@ -47,12 +47,12 @@ public class Usuario {
     }
 
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public int getId() {
+        return id;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
